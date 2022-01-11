@@ -1,5 +1,15 @@
 from cryptography.fernet import Fernet
 
+"""
+Display
+
+Contains all encryption related functions
+Maybe static?
+
+Author: Piyotr Kao
+Date-Created: 2021 NOV 09
+Date-Modified: 2022 JAN 10
+"""
 class Encrypter:
 
     _key = ""

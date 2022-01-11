@@ -1,5 +1,17 @@
 from PassKeeper import PassKeeper
 
+"""
+Display
+
+For displaying information to the screen
+
+Will start as a cli program
+Can add GUI later
+
+Author: Piyotr Kao
+Date-Created: 2021 NOV 08
+Date-Modified: 2022 JAN 10
+"""
 class Display():
 
     _input: int
@@ -48,7 +60,4 @@ class Display():
     # Upon exiting, write to the encrypted file
     def _exit(self):
         print("Quit")
-        self.create_final_data()
-        print("Writing: " + self._finalData)
-        self._enc.write(self._file, self._finalData)
         self._state = 0

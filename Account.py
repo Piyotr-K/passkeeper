@@ -1,3 +1,13 @@
+"""
+Account
+
+Representation of the account information as a class
+For ease of storage and access
+
+Author: Piyotr Kao
+Date-Created: 2021 NOV 08
+Date-Modified: 2022 JAN 10
+"""
 class Account():
 
     _user: str
