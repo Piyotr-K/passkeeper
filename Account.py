@@ -8,16 +8,33 @@ Author: Piyotr Kao
 Date-Created: 2021 NOV 08
 Date-Modified: 2022 JAN 10
 """
+
+
 class Account():
 
-    _user: str
-    _email: str
-    _passwd: str
+    # static delimiter variable
+    _DELIMITER: str = "/"
 
     def __init__(self, user: str, email: str, passwd: str):
         self._user = user
         self._email = email
         self._passwd = passwd
+
+    @classmethod
+    def fromString(cls, infoStr: str):
+        tmp = infoStr.split(cls._DELIMITER)
+        return cls(tmp[0], tmp[1], tmp[2])
+
+    @classmethod
+    def fromDict(cls, infoDict: dict[str, str]):
+        return cls(infoDict["username"], infoDict["email"], infoDict["passwd"])
+        
+    
+    def checkValid(self) -> bool:
+        """Simple validity checker, return False if email or passwd is None"""
+        if self._email and self._passwd:
+            return True
+        return False
     
     @property
     def email(self) -> str:
@@ -43,5 +60,8 @@ class Account():
     def user(self, u: str):
         self._user = u
     
+    def __repr__(self):
+        return f"{self._user}{self._DELIMITER}{self._email}{self._DELIMITER}{self._passwd}"
+
     def __str__(self):
-        return self._email + "." + self._user + "." + self._passwd
+        return f"Email: {self._email} Username: {self._user} Password: {self._passwd}"

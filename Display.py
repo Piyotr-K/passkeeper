@@ -1,3 +1,4 @@
+from typing import MutableMapping
 from PassKeeper import PassKeeper
 
 """
@@ -14,13 +15,11 @@ Date-Modified: 2022 JAN 10
 """
 class Display():
 
-    _input: int
-    # State for exiting the program
-    _state: int
-
     def __init__(self):
-        self._state = 1
-        self._input = -1
+        # State for exiting the program
+        self._state: int = 1
+        self._input: int = -1
+        self._keeper: PassKeeper = PassKeeper()
 
     def run(self):
         while self._state != 0:
@@ -30,17 +29,29 @@ class Display():
 
     def take_input(self):
         self._input = int(input("Enter an option: "))
+    
+    def take_input_re(self, prompt="Enter: ") -> str:
+        """Contains a while loop for input sanitation and None checks
+
+        Keyword Arguments:
+        prompt -- The prompt to give the user (default "Enter: ")
+        """
+        while True:
+            ui = input(prompt)
+            if not ui:
+                print("No answer detected, try again")
+            else:
+                return ui
 
     def eval_input(self):
         if self._input == 1:
             print("Add new acc")
-            user = input("Enter a new acc name: ")
-            self._tmpData.append(user)
+            self.display_add()
         elif self._input == 2:
             print("Remove acc")
         elif self._input == 4:
             print("Display all acc")
-            print(self._tmpData)
+            self.display_all()
         elif self._input == 7:
             self._exit()
         else:
@@ -57,7 +68,26 @@ class Display():
         7. Quit
         ''')
     
+    def display_add(self):
+        tmpInfo = {}
+
+        # Can be empty
+        user = input("Enter the acc name: ")
+        tmpInfo["username"] = user
+
+        mail = self.take_input_re("Please enter the acc email: ")
+        tmpInfo["email"] = mail
+
+        passwd = self.take_input_re("Enter the acc password: ")
+        tmpInfo["passwd"] = passwd
+
+        self._keeper.add(infoDict = tmpInfo)
+    
+    def display_all(self):
+        print(self._keeper.listAll())
+    
     # Upon exiting, write to the encrypted file
     def _exit(self):
         print("Quit")
+        self._keeper.exit()
         self._state = 0
