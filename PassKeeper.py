@@ -1,5 +1,6 @@
 from Encrypter import Encrypter
 from Account import Account
+import hashlib
 
 """
 PassKeeper
@@ -15,17 +16,12 @@ class PassKeeper():
 
     # static delimiter for acc separation
     _SEPARATOR = "|"
-
-    # Accounts list
-    _accList = []
-
-    _enc: Encrypter
-
-    # final string to be written to the secret file
-    _finalData: str = ""
-    _file: str = "pass.secret"
     
     def __init__(self):
+        # final string to be written to the secret file
+        self._file: str = "pass.secret"
+        self._finalData: str = ""
+        self._accList = []
         # Create a new encrypter first
         self._enc = Encrypter()
         # Get the saved accs first
