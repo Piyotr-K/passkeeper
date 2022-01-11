@@ -9,7 +9,6 @@ Date-Created: 2021 NOV 08
 Date-Modified: 2022 JAN 10
 """
 
-
 class Account():
 
     # static delimiter variable

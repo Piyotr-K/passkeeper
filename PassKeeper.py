@@ -77,7 +77,7 @@ class PassKeeper():
         and write to the file
         """
         self.create_final_data()
-        print("Writing: " + self._finalData)
+        # print("Writing: " + self._finalData)
         self._enc.write(self._file, self._finalData)
     
     def create_final_data(self):
