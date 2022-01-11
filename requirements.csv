@@ -1,0 +1,57 @@
+* Requirements for the program *
+
+1. Add accounts to the database
+2. Remove accounts from the database
+3. Edit/update accounts in the database
+4. Search accounts in the database
+5. List all accounts
+6. Change master password
+7. Generate new key
+
+Classes and attributes:
+Encrypter
+    - Encrypting method (?)
+    - key
+    - master pass (hashed)
+    - salt and pepper (?)
+Account
+    - user
+    - email not None
+    - pass not None
+FileHelper
+    - dbFile
+    - keyFile
+PassKeeper
+    - FileHelper
+    - accList
+    - Encrypter
+Display
+    - PassKeeper
+main
+    - Display
+    - run()
+
+Relationships:
+PassKeeper
+    - has a list of Account(s)
+    - has an Encrypter
+    - has a FileHelper
+Display:
+    - has a PassKeeper
+
+Behaviours:
+Encrypter:
+    - encrypt(finalString, key)
+        > Encrypts the final string using the master password
+
+    - decrypt(string, key)
+        > Decrypts the fileString using the master password
+
+    - checkMaster(passwdStr)
+        > @param passwdStr : str, non-hashed master password
+        > Checks entered password with master password (hash)
+
+    - createHash(passwdStr)
+        > @param passwdStr : str, non-hashed master password
+        > @return hash : str, hashed master password
+        > Changes the password entered into a hash
