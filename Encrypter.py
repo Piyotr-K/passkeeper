@@ -1,5 +1,15 @@
 from cryptography.fernet import Fernet
 
+"""
+Display
+
+Contains all encryption related functions
+Maybe static?
+
+Author: Piyotr Kao
+Date-Created: 2021 NOV 09
+Date-Modified: 2022 JAN 10
+"""
 class Encrypter:
 
     _key = ""
@@ -36,10 +46,10 @@ class Encrypter:
         
         self._fernet = Fernet(self._key)
 
-    def encrypt(self, data):
+    def encrypt(self, data) -> bytes:
         return self._fernet.encrypt(bytes(data, self._encoding))
     
-    def decrypt(self, data):
+    def decrypt(self, data) -> bytes:
         return self._fernet.decrypt(data)
     
     def write(self, filename, data):
@@ -47,8 +57,11 @@ class Encrypter:
         with open(filename, 'wb') as enc_file:
             enc_file.write(encrypted)
     
-    def read(self, filename):
+    def read(self, filename) -> str:
         with open(filename, 'rb') as file:
             enc = file.read()
+            if not enc:
+                print("Database file empty, hopefully it wasn't deleted by accident...")
+                return ""
         decrypted = self.decrypt(enc)
         return decrypted.decode(self._encoding)

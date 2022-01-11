@@ -15,9 +15,10 @@ Encrypter
     - master pass (hashed)
     - salt and pepper (?)
 Account
-    - user
+    - service not None
     - email not None
     - pass not None
+    - user
 FileHelper
     - dbFile
     - keyFile
