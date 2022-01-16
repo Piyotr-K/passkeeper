@@ -1,6 +1,5 @@
 from Encrypter import Encrypter
 from Account import Account
-import hashlib
 
 """
 PassKeeper
@@ -18,12 +17,14 @@ class PassKeeper():
     _SEPARATOR = "|"
     
     def __init__(self):
+        # Create a new encrypter first, also checks master pass
+        self._enc = Encrypter()
+
         # final string to be written to the secret file
         self._file: str = "pass.secret"
+
         self._finalData: str = ""
         self._accList = []
-        # Create a new encrypter first
-        self._enc = Encrypter()
         # Get the saved accs first
         self.segment_data(self._enc.read(self._file))
 
