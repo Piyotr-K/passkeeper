@@ -1,6 +1,7 @@
 from cryptography.fernet import Fernet
 import sys
 import hashlib
+import getpass
 
 """
 Display
@@ -60,7 +61,7 @@ class Encrypter:
             self._master = self.read_master()
 
             while True:
-                ui = input("Enter your master password: ")
+                ui = getpass.getpass("Enter your master password: ")
 
                 tmp = self.gen_hash(ui)
                 if tmp != self._master:
@@ -75,8 +76,8 @@ class Encrypter:
             print("Master password not found ... Generating New Master Password")
 
             while True:
-                ui = input("Type your master password here: ")
-                ui2 = input("Type your master password here again: ")
+                ui = getpass.getpass("Enter your master password: ")
+                ui2 = getpass.getpass("Enter your master password again: ")
                 if ui != ui2:
                     print("Passwords do not match, try again")
                 else:

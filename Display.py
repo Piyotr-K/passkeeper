@@ -10,7 +10,7 @@ Can add GUI later
 
 Author: Piyotr Kao
 Date-Created: 2021 NOV 08
-Date-Modified: 2022 JAN 10
+Date-Modified: 2022 JAN 15
 """
 class Display():
 
@@ -69,6 +69,10 @@ class Display():
     
     def display_add(self):
         tmpInfo = {}
+
+        # Can be empty
+        service = input("Enter the acc service: ")
+        tmpInfo["service"] = service
 
         # Can be empty
         user = input("Enter the acc name: ")
