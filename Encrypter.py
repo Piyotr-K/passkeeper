@@ -9,9 +9,11 @@ Display
 Contains all encryption related functions
 Maybe static?
 
+test master passwd: 1234
+
 Author: Piyotr Kao
 Date-Created: 2021 NOV 09
-Date-Modified: 2022 JAN 15
+Date-Modified: 2022 MAR 23
 """
 class Encrypter:
 
