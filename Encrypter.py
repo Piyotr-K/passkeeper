@@ -1,6 +1,7 @@
 from cryptography.fernet import Fernet
 import sys
 import hashlib
+import getpass
 
 """
 Display
@@ -8,9 +9,11 @@ Display
 Contains all encryption related functions
 Maybe static?
 
+master password: test1234
+
 Author: Piyotr Kao
 Date-Created: 2021 NOV 09
-Date-Modified: 2022 JAN 15
+Date-Modified: 2022 OCT 12
 """
 class Encrypter:
 
@@ -54,7 +57,7 @@ class Encrypter:
         Attempts to read for a master password, if not found, means that its the first time
         running the program, will ask user to create a new master password
 
-        For the final version need to delete all files when generating a new password
+        For the final version need to delete all files when generating a new master password
         """
         try:
             self._master = self.read_master()
@@ -73,16 +76,8 @@ class Encrypter:
         except FileNotFoundError:
             # If there is no master password yet
             print("Master password not found ... Generating New Master Password")
-
-            while True:
-                ui = input("Type your master password here: ")
-                ui2 = input("Type your master password here again: ")
-                if ui != ui2:
-                    print("Passwords do not match, try again")
-                else:
-                    break
+            self.create_master()
             
-            self.write_master(self.gen_hash(ui))
 
     def gen_hash(self, data: str) -> bytes:
         m = hashlib.sha256()
@@ -95,6 +90,17 @@ class Encrypter:
             self._key = filekey.read()
         
         self._fernet = Fernet(self._key)
+    
+    def create_master(self) -> None:
+        while True:
+            ui = getpass.getpass("Enter your new master password: ")
+            ui2 = getpass.getpass("Enter your new master password again: ")
+            if ui != ui2:
+                print("Passwords do not match, try again")
+            else:
+                break
+        
+        self.write_master(self.gen_hash(ui))
     
     def read_master(self) -> bytes:
         with open("master.secret", 'rb') as master:

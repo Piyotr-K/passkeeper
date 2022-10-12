@@ -51,6 +51,9 @@ class Display():
         elif self._input == 4:
             print("Display all acc")
             self.display_all()
+        elif self._input == 6:
+            print("Change master password")
+            self.change_master()
         elif self._input == 7:
             self._exit()
         else:
@@ -63,11 +66,14 @@ class Display():
         3. Search sites
         4. Display all accs
         5. Edit acc (user/email/pass)
-        6. Edit Master pass
+        6. Change master password
         7. Quit
         ''')
     
     def display_add(self):
+        """
+        Adding a new account into the db
+        """
         tmpInfo = {}
 
         # Can be empty
@@ -81,6 +87,9 @@ class Display():
         tmpInfo["passwd"] = passwd
 
         self._keeper.add(infoDict = tmpInfo)
+    
+    def change_master(self):
+        pass
     
     def display_all(self):
         print(self._keeper.listAll())
