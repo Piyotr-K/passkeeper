@@ -9,7 +9,7 @@ Account objects for storing
 
 Author: Piyotr Kao
 Date-Created: 2021 NOV 08
-Date-Modified: 2022 JAN 10
+Date-Modified: 2024 JUL 04
 """
 class PassKeeper():
 
@@ -46,7 +46,7 @@ class PassKeeper():
 
             if len(info.split(Account._DELIMITER)) != 3:
                 print("Formatting Error")
-                print("Check: " + info.split(Account._DELIMITER))
+                print("Check: " + info.split(Account._DELIMITER).__str__())
                 return
             
             tmp = Account.fromString(info)

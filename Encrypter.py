@@ -63,7 +63,7 @@ class Encrypter:
             self._master = self.read_master()
 
             while True:
-                ui = input("Enter your master password: ")
+                ui = getpass.getpass("Enter your master password: ")
 
                 tmp = self.gen_hash(ui)
                 if tmp != self._master:

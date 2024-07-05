@@ -3,7 +3,7 @@
   - [Sample Data:](#sample-data)
 
 # PassKeeper
-For fun project lel
+For fun project
 
 ## Language used:
 Python for prototyping and then C++ for actual implementation

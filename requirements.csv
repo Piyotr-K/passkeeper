@@ -56,3 +56,7 @@ Encrypter:
         > @param passwdStr : str, non-hashed master password
         > @return hash : str, hashed master password
         > Changes the password entered into a hash
+
+Bugs:
+- No pass.secret, doesn't create on start-up
+    - Should generate with the master.secret
